@@ -1,0 +1,30 @@
+[{
+  "name": "Stripe",
+  "description": "Stripe is a suite of payment APIs that powers commerce for businesses of all sizes.",
+  "logo": "https://stripe.com/img/v3/home/twitter.png",
+  "url": "/stripe",
+  "website": "https://stripe.com",
+  "documentation": "https://docs.stripe.com/"
+},{
+  "name": "Razorpay",
+  "description": "Razorpay is the only payments solution in India that allows businesses to accept, process and disburse payments with its product suite.",
+  "logo": "https://razorpay.com/assets/razorpay-logo.svg",
+  "url": "/razorpay",
+  "website": "https://razorpay.com",
+  "documentation": "https://razorpay.com/docs/"
+},{
+  "name": "PayPal",
+  "description": "PayPal is the faster, safer way to send money, make an online payment, receive money or set up a merchant account.",
+  "logo": "https://www.paypalobjects.com/webstatic/icon/pp258.png",
+  "url": "/paypal",
+  "website": "https://paypal.com",
+  "documentation": "https://developer.paypal.com/docs/"
+},
+{
+  "name": "Coinbase",
+  "description": "Coinbase is a secure platform that makes it easy to buy, sell, and store cryptocurrency like Bitcoin, Ethereum, and more.",
+  "logo": "https://www.coinbase.com/assets/app/favicon-32x32.png",
+  "url": "/coinbase",
+  "website": "https://coinbase.com",
+  "documentation": "https://docs.cdp.coinbase.com/"
+}]

@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} h-min-screen`}>
         {children}
-        <ToastContainer />
+        <ToastContainer position="top-center" draggable={true} />
         <Analytics />
       </body>
     </html>

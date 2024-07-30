@@ -21,11 +21,10 @@ export async function createPayment({
     return { error: "Product not found" };
   }
 
-  let access_token = process.env.PAYPAL_ACCESS_TOKEN;
+  let access_token = await generateAccessToken();
 
   if (!access_token) {
-    access_token = await generateAccessToken();
-    console.log("Generated access token", access_token);
+    return { error: "Failed to generate access token" };
   }
 
   // Calculate total amount based on quantity and product price

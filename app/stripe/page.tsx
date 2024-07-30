@@ -65,10 +65,10 @@ export default function Stripe() {
           <div className="mt-2 mb-5 flex items-center justify-between">
             <p>
               <span className="text-3xl font-bold text-slate-900 dark:text-gray-200">
-                ₹{(product.price - product.price * (product.discount / 100)).toFixed(2)}
+                ${(product.price - product.price * (product.discount / 100)).toFixed(2)}
               </span>
               <span className="text-sm text-slate-900 dark:text-gray-200 line-through">
-                ₹{product.price.toFixed(2)}
+                ${product.price.toFixed(2)}
               </span>
             </p>
           </div>

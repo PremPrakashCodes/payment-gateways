@@ -35,7 +35,7 @@ export async function createCheckoutSession({ productId, quantity }: CreateCheck
       line_items: [
         {
           price_data: {
-            currency: "INR",
+            currency: "USD",
             product_data: {
               name: product.name,
               images: [`${process.env.NEXT_PUBLIC_BASE_URL}${product.image}`],

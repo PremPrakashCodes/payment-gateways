@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
-export default function Status({ searchParams }: { searchParams: { payment: string } }) {
-  const payment = searchParams.payment;
+export default function Payment({ searchParams }: { searchParams: { status: string } }) {
+  const status = searchParams.status;
 
-  if (payment == "failed") {
+  if (status == "failed") {
     return (
       <div className="h-screen w-full flex items-center justify-center">
         <div className=" bg-gray-200 dark:bg-gray-950 shadow-md rounded-lg p-6  md:mx-auto">
@@ -38,7 +38,7 @@ export default function Status({ searchParams }: { searchParams: { payment: stri
     );
   }
 
-  if (payment == "success") {
+  if (status == "success") {
     return (
       <div className="h-screen w-full flex items-center justify-center">
         <div className=" bg-gray-200 dark:bg-gray-950 shadow-md rounded-lg p-6  md:mx-auto">

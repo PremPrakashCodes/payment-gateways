@@ -2,42 +2,62 @@
 import Image from "next/image";
 import products from "@/data/products.json";
 import { useTransition } from "react";
-import { createCheckoutSession } from "@/actions/stripe";
-import { loadStripe } from "@stripe/stripe-js";
+import { createOrders, verifyPayment } from "@/actions/razorpay";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
-export default function Stripe() {
+export default function Razorpay() {
   const [loading, startTransition] = useTransition();
-
+  const router = useRouter();
   const product = products[0];
 
   function handleBuy() {
     startTransition(async () => {
-      const result = await createCheckoutSession({ productId: product.id, quantity: 1 });
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.async = true;
 
-      if (!result || result.error || !result.sessionId) {
-        alert("Error creating checkout session");
-        return;
-      }
+      script.onload = async () => {
+        const result = await createOrders({ productId: product.id, quantity: 1 });
 
-      const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY;
-      if (!publishableKey) {
-        alert("Stripe public key is missing");
-        return;
-      }
-      const stripe = await loadStripe(publishableKey);
+        if (result.error) {
+          alert("Error creating orders");
+          return;
+        }
 
-      if (!stripe) {
-        alert("Error loading stripe");
-        return;
-      }
+        const options = {
+          key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+          amount: (product.price - product.price * (product.discount / 100)) * 100,
+          currency: "USD",
+          name: "Payment Gateways Demo",
+          image: `${process.env.NEXT_PUBLIC_BASE_URL}${product.image}`,
+          order_id: result.orderId,
+          handler: async function (response: {
+            razorpay_payment_id: string;
+            razorpay_order_id: string;
+            razorpay_signature: string;
+          }) {
+            const result = await verifyPayment(response);
+            if (result.error) {
+              toast.error("Payment failed");
+              router.push("/payment?status=failed");
+              return;
+            }
+            router.push("/payment?status=success");
+            toast.success("Payment successful");
+          },
+          prefill: {
+            name: "Payment Gateways Demo",
+            email: "premprakash@example.com",
+            contact: "9999999999",
+          },
+        };
 
-      const { error } = await stripe.redirectToCheckout({
-        sessionId: result.sessionId,
-      });
+        const rzp = new (window as any).Razorpay(options);
+        rzp.open();
+      };
 
-      if (error) {
-        alert("Error redirecting to checkout");
-      }
+      document.body.appendChild(script);
     });
   }
 

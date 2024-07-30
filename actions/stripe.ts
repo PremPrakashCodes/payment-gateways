@@ -22,8 +22,6 @@ export async function createCheckoutSession({ productId, quantity }: CreateCheck
   try {
     const apiKey = process.env.STRIPE_SECRET_KEY;
 
-    console.log("API Key", apiKey);
-
     if (!apiKey) {
       throw new Error("Stripe secret key is missing!");
     }
@@ -32,12 +30,12 @@ export async function createCheckoutSession({ productId, quantity }: CreateCheck
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/status?payment=success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/status?payment=failed`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment?status=success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment?status=failed`,
       line_items: [
         {
           price_data: {
-            currency: "USD",
+            currency: "INR",
             product_data: {
               name: product.name,
               images: [`${process.env.NEXT_PUBLIC_BASE_URL}${product.image}`],

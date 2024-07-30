@@ -26,7 +26,7 @@ export async function createPayment({
   const client_id = process.env.PAYPAL_CLIENT_ID;
   const client_secret = process.env.PAYPAL_CLIENT_SECRET;
 
-  if (!client_id || client_secret) {
+  if (!client_id || !client_secret) {
     console.log("Paypal client id or secret not found");
     return { error: "Paypal client id or secret not found" };
   }

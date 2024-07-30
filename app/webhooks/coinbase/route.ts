@@ -25,20 +25,25 @@ export async function POST(req: Request) {
   // Handle the webhook event
   const event = JSON.parse(body);
 
+  // Do something with the event
   switch (event.type) {
+    case "charge:created":
+      // Handle charge created event
+      console.log("Charge created", event.data.id);
+      break;
+    case "charge:pending":
+      // Handle charge created event
+      console.log("Charge pending", event.data.id);
+      break;
     case "charge:confirmed":
-      // Payment confirmed
-      console.log("Payment confirmed for charge:", event.data.id);
-      // Update your database, fulfill the order, etc.
+      // Handle charge created event
+      console.log("Charge confirmed", event.data.id);
       break;
     case "charge:failed":
-      // Payment failed
-      console.log("Payment failed for charge:", event.data.id);
-      // Update your database, notify the customer, etc.
+      // Handle charge created event
+      console.log("Charge failed", event.data.id);
       break;
-    // Add more cases as needed
-    default:
-      console.log("Unhandled event type:", event.type);
   }
+
   return Response.json({ received: true });
 }

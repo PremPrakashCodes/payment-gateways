@@ -1,8 +1,19 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-export default function Payment({ searchParams }: { searchParams: { status: string } }) {
+interface PaymentProps {
+  searchParams: { status: string; token?: string; PayerID?: string };
+}
+
+export default function Payment({ searchParams }: PaymentProps) {
   const status = searchParams.status;
+  const token = searchParams.token;
+  const payerId = searchParams.PayerID;
+
+  //if (token) {
+  // Call the PayPal API to capture and the payment and update database
+  // Redirect to /payment?status=success or /payment?status=failed
+  //}
 
   if (status == "failed") {
     return (

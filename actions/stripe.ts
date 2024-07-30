@@ -1,14 +1,14 @@
 "use server";
 import Stripe from "stripe";
 import products from "@/data/products.json";
-import { NextResponse } from "next/server";
 
-interface CreateCheckoutSessionInput {
+export async function createCheckoutSession({
+  productId,
+  quantity,
+}: {
   productId: number;
   quantity: number;
-}
-
-export async function createCheckoutSession({ productId, quantity }: CreateCheckoutSessionInput) {
+}) {
   if (!productId || !quantity) {
     return { error: "Invalid input" };
   }

@@ -4,7 +4,6 @@
     "name": "Full Stack Developer",
     "price": 500,
     "discount": 30,
-    "image": "/images/profile.png",
-    "rating": 5
+    "image": "/images/profile.png"
   }
 ]

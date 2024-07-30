@@ -1,7 +1,6 @@
 "use server";
 
 import products from "@/data/products.json";
-import { generateAccessToken } from "@/lib/stripe";
 
 export async function createPayment({
   productId,
@@ -21,14 +20,16 @@ export async function createPayment({
     return { error: "Product not found" };
   }
 
-  let access_token = await generateAccessToken();
-
-  if (!access_token) {
-    return { error: "Failed to generate access token" };
-  }
-
   // Calculate total amount based on quantity and product price
   const totalAmount = (product.price - (product.price * product.discount) / 100) * quantity;
+
+  const client_id = process.env.PAYPAL_CLIENT_ID;
+  const client_secret = process.env.PAYPAL_CLIENT_SECRET;
+
+  if (!client_id || client_secret) {
+    console.log("Paypal client id or secret not found");
+    return { error: "Paypal client id or secret not found" };
+  }
 
   try {
     // Create PayPal order
@@ -38,7 +39,7 @@ export async function createPayment({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
+          Authorization: `Basic ${Buffer.from(`${client_id}:${client_secret}`).toString("base64")}`,
         },
         body: JSON.stringify({
           intent: "CAPTURE",

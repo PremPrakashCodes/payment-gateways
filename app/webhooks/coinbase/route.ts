@@ -23,25 +23,29 @@ export async function POST(req: Request) {
   }
 
   // Handle the webhook event
-  const event = JSON.parse(body);
+  const { event } = await JSON.parse(body);
+
+  console.log(event.data);
 
   switch (event.type) {
     case "charge:created":
       // Handle charge created event
-      console.log("Charge created", event.data.id);
+      console.log("Charge created", event.data);
       break;
     case "charge:pending":
       // Handle charge created event
-      console.log("Charge pending", event.data.id);
+      console.log("Charge pending", event.data);
       break;
     case "charge:confirmed":
       // Handle charge created event
-      console.log("Charge confirmed", event.data.id);
+      console.log("Charge confirmed", event.data);
       break;
     case "charge:failed":
       // Handle charge created event
-      console.log("Charge failed", event.data.id);
+      console.log("Charge failed", event.data);
       break;
+    default:
+      console.log("Unhandled event", event.type);
   }
 
   return Response.json({ received: true });

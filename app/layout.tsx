@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className} h-min-screen`}>
         {children}
         <ToastContainer position="top-center" draggable={true} />
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>

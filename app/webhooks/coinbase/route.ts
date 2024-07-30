@@ -25,7 +25,6 @@ export async function POST(req: Request) {
   // Handle the webhook event
   const event = JSON.parse(body);
 
-  // Do something with the event
   switch (event.type) {
     case "charge:created":
       // Handle charge created event

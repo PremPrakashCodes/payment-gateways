@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
   // Handle the webhook event
   const event = JSON.parse(body);
-
+   console.log(event.type)
   switch (event.type) {
     case "charge:confirmed":
       // Payment confirmed

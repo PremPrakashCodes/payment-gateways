@@ -57,7 +57,7 @@ export default function Paypal() {
             onClick={handleBuy}
             className="w-full rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
           >
-            {loading ? "Loading..." : "Hire Me"}
+            {loading ? "Loading..." : "Buy Now"}
           </button>
         </div>
       </div>

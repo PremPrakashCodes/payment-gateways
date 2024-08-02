@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Full Stack Developer",
+    "name": "Red Nike sneaker",
     "price": 500,
     "discount": 30,
-    "image": "/images/profile.png"
+    "image": "/images/product.jpg"
   }
 ]

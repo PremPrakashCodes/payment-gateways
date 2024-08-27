@@ -85,10 +85,14 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [PayPal](https://www.paypal.com/)
 - [Coinbase](https://www.coinbase.com/)
 
+
 ## Contact
 
 If you have any questions or feedback, feel free to reach out!
 
-[LinkedIn](https://www.linkedin.com/in/premprakashsharma/)
+[LinkedIn](https://www.linkedin.com/in/premprakashsharma/)  
 
----
+<a href="https://www.buymeacoffee.com/premprakash.dev"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=premprakash.dev&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
+
+
